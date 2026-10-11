@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from Model.const import WIN_WIDTH, WIN_HEIGHT
+from Model.const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
+from Model.level import Level
 from Model.menu import Menu
 
-
+#runs the game based on the width and height of the const.py
 class Game:
     def __init__(self):
         pygame.init()
@@ -14,5 +15,13 @@ class Game:
     def run(self, ):
         while True:
             menu = Menu(self.window)
-            menu.run()
-            pass
+            menu_return = menu.run()
+
+            if menu_return in [MENU_OPTION[0], MENU_OPTION[1]]:
+                level = Level(self.window, 'Level-1', menu_return)
+                level_return = level.run()
+            elif menu_return == MENU_OPTION[3]:
+                pygame.quit()
+                exit()
+            else:
+                pass
