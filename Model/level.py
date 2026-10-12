@@ -8,6 +8,7 @@ from Model.entityFactory import EntityFactory
 from Model.const import WIN_HEIGHT, WIN_WIDTH, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from pygame import Surface, Rect
 from pygame.font import Font
+from Model.EntityMediator import EntityMediator
 
 class Level:
     def __init__(self, window, name, game_mode):
@@ -45,8 +46,12 @@ class Level:
             self.level_text(30, f'fps: {clock.get_fps():.0f}', (240, 248, 255), (10, WIN_HEIGHT - 70))
                 
             self.level_text(30, f'entidades: {len(self.entity_list)}', (240, 248, 255), (10, WIN_HEIGHT - 35))
-
             pygame.display.flip()
+            
+            #collisions
+            EntityMediator.verify.collision(entity_list=self.entity_list)
+            EntityMediator.verify.health(entity_list=self.entity_list)
+
             clock.tick(60)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
