@@ -7,14 +7,15 @@ from Model.entity import Entity
 from Model.const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH, PLAYER_KEY_UP, PLAYER_KEY_DOWN, PLAYER_KEY_RIGHT, PLAYER_KEY_LEFT, PLAYER_KEY_SHOOT, ENTITY_SHOT_DELAY
 from Model.PlayerShot import PlayerShot
 
-
+#Manages player movement, boundary constraints, input mapping, and weapon firing cooldowns
 class Player(Entity):
 
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
 
-    def move(self, ):
+    def move(self):
+        #Read continuous keyboard states for directional movement within window boundaries
         pressed_key = pygame.key.get_pressed()
         if pressed_key[PLAYER_KEY_UP[self.name]] and self.rect.top > 0:
             self.rect.centery -= ENTITY_SPEED[self.name]
@@ -24,10 +25,11 @@ class Player(Entity):
             self.rect.centerx -= ENTITY_SPEED[self.name]
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
-        pass
 
     def shoot(self):
+        #Decrease weapon firing cooldown timer on each frame update
         self.shot_delay -= 1
+        #When cooldown reaches zero, check for shoot key input to spawn a projectile
         if self.shot_delay == 0:
             self.shot_delay = ENTITY_SHOT_DELAY[self.name]
             pressed_key = pygame.key.get_pressed()
