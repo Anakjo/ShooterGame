@@ -26,6 +26,9 @@ class Game:
                 player_score = [0, 0] #Score tracking for Player 1 and Player 2
                 player_health = [300, 300] #Initial health pool for players
 
+                pygame.mixer_music.load('./Asset/Level.ogg')
+                pygame.mixer_music.play(-1)
+
                 #Run Level 1
                 level1 = Level(self.window, 'Level1', menu_return, player_score, player_health)
                 level1_return = level1.run()

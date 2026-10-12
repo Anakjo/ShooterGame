@@ -58,6 +58,9 @@ class Menu:
                 else:
                     self.menu_text(40, MENU_OPTION[i], (240, 248, 255), ((WIN_WIDTH / 2), 300 + 50 * i))
 
+            self.menu_text(20, "Player 1: ARROWS to Move | SPACE to Shoot", (200, 200, 200), ((WIN_WIDTH / 2), WIN_HEIGHT - 60))
+            self.menu_text(20, "Player 2: WASD to Move | L-CTRL to Shoot", (200, 200, 200), ((WIN_WIDTH / 2), WIN_HEIGHT - 35))
+
             pygame.display.flip()
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):

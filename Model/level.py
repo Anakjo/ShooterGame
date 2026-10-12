@@ -6,7 +6,7 @@ import random
 
 from Model.entity import Entity
 from Model.entityFactory import EntityFactory
-from Model.const import WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_LEVEL
+from Model.const import WIN_HEIGHT, WIN_WIDTH, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_LEVEL
 from pygame import Surface, Rect
 from pygame.font import Font
 from Model.EntityMediator import EntityMediator
@@ -93,8 +93,14 @@ class Level:
                 if ent.name == 'PlayerS2':
                     self.level_text(27, f'Player2 - Health: {ent.health} | Score: {ent.score}', (240, 248, 255), (10, 70))
 
-            #Render UI overlays (Level timer, FPS counter, entity count)
+            #Render UI overlays (Level  info, timer, FPS counter, entity count)
             self.level_text(30, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', (240, 248, 255), (10, 5))
+
+            # Display special 'WAVE 2' banner at the top center during Level 2 for continuous gameplay feel
+            if self.name == 'Level2':
+                self.level_text(40, "WAVE 2", (255, 230, 0), (WIN_WIDTH / 2, 10))
+
+
             self.level_text(30, f'fps: {clock.get_fps():.0f}', (240, 248, 255), (10, WIN_HEIGHT - 70))
             self.level_text(30, f'entidades: {len(self.entity_list)}', (240, 248, 255), (10, WIN_HEIGHT - 35))
 
