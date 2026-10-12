@@ -46,6 +46,10 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'PlayerS':
+                    self.level_text(27, f'Player1 - Health: {ent.health} | Score: {ent.score}', (240, 248, 255), (10, 40))
+                if ent.name == 'PlayerS2':
+                    self.level_text(27, f'Player2 - Health: {ent.health} | Score: {ent.score}', (240, 248, 255), (10, 70))
 
             # printed text
             self.level_text(30, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', (240, 248, 255), (10, 5))

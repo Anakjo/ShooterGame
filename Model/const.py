@@ -30,6 +30,34 @@ ENTITY_HEALTH = {
     'Enemy2Shot': 1
 }
 
+ENTITY_DAMAGE = {
+    'Level1Bg1': 0,
+    'Level1Bg2': 0,
+    'Level1Bg3': 0,
+    'PlayerS': 1,
+    'PlayerSShot': 25,
+    'PlayerS2': 1,
+    'PlayerS2Shot': 20,
+    'Enemy1': 1,
+    'Enemy1Shot': 20,
+    'Enemy2': 1,
+    'Enemy2Shot': 15
+}
+
+ENTITY_SCORE = {
+    'Level1Bg1': 0,
+    'Level1Bg2': 0,
+    'Level1Bg3': 0,
+    'PlayerS': 0,
+    'PlayerSShot': 0,
+    'PlayerS2': 0,
+    'PlayerS2Shot': 0,
+    'Enemy1': 50,
+    'Enemy1Shot': 0,
+    'Enemy2': 100,
+    'Enemy2Shot': 0
+}
+
 ENTITY_SHOT_DELAY = {
     'PlayerS': 20,
     'PlayerS2': 15,
