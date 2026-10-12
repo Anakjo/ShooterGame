@@ -3,12 +3,15 @@
 
 import pygame
 import random
+
 from Model.entity import Entity
 from Model.entityFactory import EntityFactory
-from Model.const import WIN_HEIGHT, WIN_WIDTH, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
+from Model.const import WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from pygame import Surface, Rect
 from pygame.font import Font
 from Model.EntityMediator import EntityMediator
+from Model.player import Player
+from Model.enemy import Enemy
 
 class Level:
     def __init__(self, window, name, game_mode):
@@ -39,6 +42,10 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if isinstance(ent, (Player, Enemy)):
+                    shoot = ent.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
 
             # printed text
             self.level_text(30, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', (240, 248, 255), (10, 5))
@@ -47,10 +54,10 @@ class Level:
                 
             self.level_text(30, f'entidades: {len(self.entity_list)}', (240, 248, 255), (10, WIN_HEIGHT - 35))
             pygame.display.flip()
-            
+
             #collisions
-            EntityMediator.verify.collision(entity_list=self.entity_list)
-            EntityMediator.verify.health(entity_list=self.entity_list)
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
 
             clock.tick(60)
 

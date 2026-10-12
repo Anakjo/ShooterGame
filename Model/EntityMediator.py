@@ -1,5 +1,9 @@
+from Model.const import WIN_WIDTH
 from Model.entity import Entity
 from Model.enemy import Enemy
+from Model.PlayerShot import PlayerShot
+from Model.player import Player
+from Model.EnemyShot import EnemyShot
 
 class EntityMediator:
 
@@ -33,6 +37,9 @@ class EntityMediator:
                 ent1.rect.bottom >= ent2.rect.top and 
                 ent1.rect.top <= ent2.rect.bottom):
 
+                ent1.health -= 1
+                ent2.health -= 1
+
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
         for i in range(len(entity_list)):
@@ -44,6 +51,6 @@ class EntityMediator:
 
     @staticmethod
     def verify_health(entity_list: list[Entity]): #remove entity
-        for ent in entity_list:
+        for ent in entity_list[:]:
             if ent.health <= 0:
                 entity_list.remove(ent)
