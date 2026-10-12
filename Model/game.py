@@ -5,6 +5,7 @@ import pygame
 from Model.const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
 from Model.level import Level
 from Model.menu import Menu
+from Model.Score import Score
 
 #runs the game based on the width and height of the const.py
 class Game:
@@ -14,6 +15,7 @@ class Game:
 
     def run(self, ):
         while True:
+            score = Score(self.window)
             menu = Menu(self.window)
             menu_return = menu.run()
 
@@ -25,7 +27,13 @@ class Game:
                 level1_return = level1.run()
                 if level1_return:
                     level2 = Level(self.window, 'Level2', menu_return, player_score, player_health)
-                    level2.run()
+                    level2_return = level2.run()
+                    if level2_return:
+                        score.save(menu_return, player_score)
+
+            elif menu_return == MENU_OPTION[2]:
+                score = Score(self.window)
+                score.show()
 
             elif menu_return == MENU_OPTION[3]:
                 pygame.quit()
