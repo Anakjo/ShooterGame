@@ -2,10 +2,16 @@ import pygame
 
 #E
 EVENT_ENEMY = pygame.USEREVENT + 1
+
+EVENT_TIMEOUT = pygame.USEREVENT + 2
+
 ENTITY_SPEED = {
     'Level1Bg1': 0,
     'Level1Bg2': 1,
     'Level1Bg3': 3,
+    'Level2Bg1': 0,
+    'Level2Bg2': 1,
+    'Level2Bg3': 3,
     'PlayerS': 5,
     'PlayerSShot': 4,
     'PlayerS2': 5,
@@ -20,6 +26,9 @@ ENTITY_HEALTH = {
     'Level1Bg1': 999,
     'Level1Bg2': 999,
     'Level1Bg3': 999,
+    'Level2Bg1': 999,
+    'Level2Bg2': 999,
+    'Level2Bg3': 999,
     'PlayerS': 300,
     'PlayerSShot': 1,
     'PlayerS2': 300,
@@ -34,6 +43,9 @@ ENTITY_DAMAGE = {
     'Level1Bg1': 0,
     'Level1Bg2': 0,
     'Level1Bg3': 0,
+    'Level2Bg1': 0,
+    'Level2Bg2': 0,
+    'Level2Bg3': 0,
     'PlayerS': 1,
     'PlayerSShot': 25,
     'PlayerS2': 1,
@@ -48,6 +60,9 @@ ENTITY_SCORE = {
     'Level1Bg1': 0,
     'Level1Bg2': 0,
     'Level1Bg3': 0,
+    'Level2Bg1': 0,
+    'Level2Bg2': 0,
+    'Level2Bg3': 0,
     'PlayerS': 0,
     'PlayerSShot': 0,
     'PlayerS2': 0,
@@ -85,7 +100,11 @@ PLAYER_KEY_SHOOT = {'PlayerS': pygame.K_SPACE,
                  'PlayerS2': pygame.K_LCTRL}
 
 #S
-SPAWN_TIME = 4000
+SPAWN_TIME = 2000
+
+#T
+TIMEOUT_STEP = 100
+TIMEOUT_LEVEL = 20000
 
 #W
 WIN_WIDTH = 1024

@@ -18,8 +18,15 @@ class Game:
             menu_return = menu.run()
 
             if menu_return in [MENU_OPTION[0], MENU_OPTION[1]]:
-                level = Level(self.window, 'Level-1', menu_return)
-                level_return = level.run()
+                player_score = [0, 0]#Player1, Player2
+                player_health = [300, 300]
+
+                level1 = Level(self.window, 'Level1', menu_return, player_score, player_health)
+                level1_return = level1.run()
+                if level1_return:
+                    level2 = Level(self.window, 'Level2', menu_return, player_score, player_health)
+                    level2.run()
+
             elif menu_return == MENU_OPTION[3]:
                 pygame.quit()
                 exit()

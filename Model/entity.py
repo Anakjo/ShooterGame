@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
 import pygame
-from Model.const import ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SCORE
+from Model.const import ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SCORE, WIN_HEIGHT, WIN_WIDTH
 
 class Entity(ABC):
     def __init__(self, name: str, position: tuple):
         self.name = name
         self.surf = pygame.image.load('./Asset/' + name + '.png').convert_alpha()
+        if 'Level' in self.name:
+            self.surf = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
         self.rect = self.surf.get_rect(left=position[0], top=position[1])
         self.speed= 0
         self.health = ENTITY_HEALTH[self.name]
